@@ -294,7 +294,7 @@ class $modify(GauntletBButton, GauntletLayer) {
 		return true;
 	}
 
-        static bool hasBside(GauntletType type) {
+        static bool Bside(GauntletType type) {
     switch (type) {
         case GauntletType::Fire:
         case GauntletType::Ice:
@@ -311,8 +311,7 @@ class $modify(GauntletBButton, GauntletLayer) {
 
 void addButton(float) {
 
-    if (!hasBside(m_fields->gauntletType)) {
-        log::debug("No B-Side available for this gauntlet");
+    if (!Bside(m_fields->gauntletType)) {
         return;
     }
 
@@ -323,7 +322,6 @@ void addButton(float) {
     );
 
 if (!myButton) {
-    log::error("B-sides Button Failed to Create");
     return;
 }
 		auto menuNode = this->getChildByID("bottom-menu");
@@ -337,11 +335,9 @@ if (!myButton) {
 			myButton->setPosition(ccp(490, 280));
 			myButton->setID("bside-button"_spr);
 			menu->updateLayout();
-			log::debug("Added B-Sides button to GauntletLayer menu after init");
 		} else {
 			myButton->setPosition(ccp(490, 280));
 			this->addChild(myButton);
-			log::warn("No CCMenu found; added button directly to GauntletLayer");
 		}
 	}
 
